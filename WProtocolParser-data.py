@@ -18,7 +18,7 @@ else:
         file = 'config.ini'
         config.read(file)
 
-DEBUG_MODE = config['Taiga']['DEBUG_MODE']
+DEBUG_MODE = config['MQTT']['DEBUG_MODE']
 
 curret_time = datetime.utcnow()
 current_date_string = curret_time.strftime('%m.%d.%y %H:%M:%S')
@@ -545,7 +545,7 @@ def pars(message):
                     b2_big_end = int(b2[-SIZE_1_BYTE:]+b2[-SIZE_2_BYTE:-SIZE_1_BYTE],base = BASE_16)
                     message = message[SIZE_2_BYTE:]
 
-                    b3 = message[:SIZE_1_BYTE]
+                    b3 = message[:SIZE_4_BYTE]
                     b3_big_end = b3[-SIZE_1_BYTE:]+b3[-SIZE_2_BYTE:-SIZE_1_BYTE]+b3[-SIZE_3_BYTE:-SIZE_2_BYTE]+b3[-SIZE_4_BYTE:-SIZE_3_BYTE]
                     int_value_b3_big_eng = int(b3_big_end,base=BASE_16)
                     message = message[SIZE_4_BYTE:]
